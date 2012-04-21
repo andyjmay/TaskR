@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace TaskR.Controllers {
-  public class TasksController : Controller {
+  public class TasksJsController : Controller {
     public ActionResult Index() {
       return View();
     }
