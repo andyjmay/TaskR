@@ -1,53 +1,39 @@
 ﻿(function ($, connection, window) {
   "use strict";
 
-  function padZero(s) {
-    s = s.toString();
-    if (s.length == 1) {
-      return "0" + s;
-    }
-    return s;
-  }
+  $('#newTaskModal').modal({
+    backdrop: true,
+    keyboard: true,
+    show: false
+  });
 
-  String.prototype.fromJsonDate = function () {
-    return eval(this.replace(/\/Date\((\d+)(\+|\-)?.*\)\//gi, "new Date($1)"))
-  };
+  $('#addTaskButton').on('click', function () {
+    $('#newTaskModal').modal('show');
+  });
 
-  Date.prototype.formatDate = function () {
-    var m = this.getMonth() + 1,
-            d = this.getDate(),
-            y = this.getFullYear();
+  $('.cancel-button').on('click', function () {
+    $('#newTaskModal').modal('hide');
+    $('#editTaskModal').modal('hide');
+    return false;
+  });
 
-    return m + "/" + d + "/" + y;
-  };
+  $('.submit-button').on('click', function () {
+    $('#newTaskModal').modal('hide');
+    $('#editTaskModal').modal('hide');
+    //return false;
+  });
 
-  Date.prototype.formatTime = function (showAp) {
-    var ap = "";
-    var hr = this.getHours();
-
-    if (hr < 12) {
-      ap = "AM";
-    }
-    else {
-      ap = "PM";
-    }
-
-    if (hr == 0) {
-      hr = 12;
-    }
-
-    if (hr > 12) {
-      hr = hr - 12;
-    }
-
-    var mins = padZero(this.getMinutes());
-    var seconds = padZero(this.getSeconds());
-    return hr + ":" + mins + ":" + seconds
-            + (showAp ? " " + ap : "");
-  };
+  $('.editButton').on('click', function () {
+    $('#editTaskModal').modal('show');
+  });
 
   var taskHub = connection.taskHub;
   var username = "andyjmay";
+
+  var viewModel = {
+    username: ko.observable(),
+    showClosed: ko.observable(false)
+  };
 
   var tasksViewModel = {
     tasks: ko.observableArray(),
@@ -57,7 +43,7 @@
       taskViewModel.AssignedTo(this.AssignedTo);
       taskViewModel.Status(this.Status);
       taskViewModel.Details(this.Details);
-      
+
       //TODO: Fix this UI call
       $('#editTaskModal').modal('show');
     }
@@ -79,6 +65,14 @@
     DeleteTask: function () {
       tasks.deleteTask(ko.toJSON(this));
       $('#editTaskModal').modal('hide');
+    },
+    ClearTask: function () {
+      this.TaskID(undefined);
+      this.Title(undefined);
+      this.AssignedTo(undefined);
+      this.Status('Open');
+      this.Details(undefined);
+      this.DateCreated(undefined);
     }
   };
 
@@ -110,12 +104,6 @@
     tasksViewModel.tasks.sort(function (left, right) {
       return left === right ? 0 : (left.TaskID < right.TaskID ? -1 : 1)
     });
-    //var tasksInViewModel = tasksViewModel.tasks();
-    //for (var i = 0; i < tasksInViewModel.length; i++) {
-    //  if (taskViewModel[i].TaskID == task.TaskID) {
-    //    tasksViewModel.tasks().
-    //  }
-    //}
   };
 
   taskHub.DeletedTask = function (task) {
@@ -139,6 +127,7 @@
                  if (success === false) {
                    alert("failed");
                  } else {
+                  
                  }
                });
     });
@@ -153,7 +142,8 @@
                .done(function (success) {
                  if (success === false) {
                    alert("failed");
-                 } else {                   
+                 } else {
+                   taskViewModel.ClearTask();
                  }
                });
     },
@@ -166,6 +156,7 @@
                  if (success === false) {
                    alert("failed");
                  } else {
+                   taskViewModel.ClearTask();
                  }
                });
     },
@@ -178,6 +169,7 @@
                  if (success === false) {
                    alert("failed");
                  } else {
+                   taskViewModel.ClearTask();
                  }
                });
     }
@@ -186,7 +178,48 @@
   window.tasks = tasks;
 
   // Apply KO bindings
+  ko.applyBindings(viewModel, document.getElementById('actions'));
   ko.applyBindings(tasksViewModel, document.getElementById('tasks'));
   ko.applyBindings(taskViewModel, document.getElementById('newTaskModal'));
   ko.applyBindings(taskViewModel, document.getElementById('editTaskModal'));
+
+  // Util functions
+  function padZero(s) {
+    s = s.toString();
+    if (s.length == 1) {
+      return "0" + s;
+    }
+    return s;
+  }
+
+  String.prototype.fromJsonDate = function () {
+    return eval(this.replace(/\/Date\((\d+)(\+|\-)?.*\)\//gi, "new Date($1)"))
+  };
+
+  Date.prototype.formatDate = function () {
+    var m = this.getMonth() + 1,
+        d = this.getDate(),
+        y = this.getFullYear();
+    return m + "/" + d + "/" + y;
+  };
+
+  Date.prototype.formatTime = function (showAp) {
+    var ap = "";
+    var hr = this.getHours();
+    if (hr < 12) {
+      ap = "AM";
+    }
+    else {
+      ap = "PM";
+    }
+    if (hr == 0) {
+      hr = 12;
+    }
+    if (hr > 12) {
+      hr = hr - 12;
+    }
+    var mins = padZero(this.getMinutes());
+    var seconds = padZero(this.getSeconds());
+    return hr + ":" + mins + ":" + seconds + (showAp ? " " + ap : "");
+  };
 })(jQuery, $.connection, window);

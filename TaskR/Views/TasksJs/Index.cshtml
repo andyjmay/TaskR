@@ -1,15 +1,15 @@
 ﻿@{
-    ViewBag.Title = "Tasks";
+    ViewBag.Title = "Tasks - JavaScript Client";
 }
 <div class="header-accent"></div>
 <div class="header">
   <h1 class="header-title">TaskR</h1>
 </div>
-<div class="task-actions">    
-  <label class="checkbox inline">
-    <input type="checkbox" name="showClosedTasks" value="showClosedTasks">
+<div id="actions" class="task-actions">    
+  @*<label class="checkbox inline">
+    <input type="checkbox" name="showClosedTasks" value="showClosedTasks" data-bind="checked: showClosed">
     Show Closed Tasks
-  </label>
+  </label>*@
   <button class="btn" type="button" id="addTaskButton">Add a Task</button>
 </div>
 <div id="tasks" class="tasks">
@@ -63,7 +63,7 @@
     </div>
   </div>
   <div class="modal-footer">
-    <a href="#" class="btn cancel-button">Cancel</a>
+    <a href="#" class="btn cancel-button" data-bind="click: ClearTask">Cancel</a>
     <input type="submit" class="btn btn-primary submit-button" value="Add Task" />
   </div>
 </form>
@@ -84,9 +84,9 @@
     <div>
       <label for="Status">Status:</label>
       <select data-bind="value: Status">
-        <option value="Open" label="Open" />
-        <option value="Closed" label="Closed" />
-        <option value="On Hold" label="On Hold" />
+        <option value="Open">Open</option>
+        <option value="Closed">Closed</option>
+        <option value="On Hold">On Hold</option>
       </select>
     </div>
     <div>
@@ -96,7 +96,13 @@
   </div>
   <div class="modal-footer">
     <a href="#" class="btn btn-danger" data-bind="click: DeleteTask">Delete Task</a>
-    <a href="#" class="btn cancel-button">Cancel</a>
+    <a href="#" class="btn cancel-button" data-bind="click: ClearTask">Cancel</a>
     <input type="submit" class="btn btn-primary submit-button" value="Update Task" />
   </div>
 </form>
+@section Scripts {
+  <script src="@Url.Content("Scripts/jquery.signalR.min.js")" type="text/javascript"></script>
+  <script src="@Url.Content("signalr/hubs")" type="text/javascript"></script>
+  <script src="@Url.Content("Scripts/knockout.js")" type="text/javascript"></script>
+  <script src="@Url.Content("Scripts/tasks.js")" type="text/javascript"></script>
+}
