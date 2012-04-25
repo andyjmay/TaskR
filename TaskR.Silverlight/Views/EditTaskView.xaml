@@ -1,0 +1,47 @@
+﻿<controls:ChildWindow x:Class="TaskR.Silverlight.Views.EditTaskView"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+           Width="400" Height="400" 
+           Title="Edit Task">
+  <Grid x:Name="LayoutRoot" Margin="2">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    <Grid Grid.Row="0" Margin="5">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="40" />
+        <RowDefinition Height="40" />
+        <RowDefinition Height="40" />
+        <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="120" />
+        <ColumnDefinition />
+      </Grid.ColumnDefinitions>
+      <TextBlock Grid.Row="0" Text="Title:" />
+      <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Title, Mode=TwoWay}" Margin="2" />
+      <TextBlock Grid.Row="1" Text="Assigned To:" />
+      <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding AssignedTo, Mode=TwoWay}" Margin="2" />
+      <TextBlock Grid.Row="2" Text="Status:" />
+      <ComboBox x:Name="TaskStatus" Grid.Row="2" Grid.Column="1" SelectedItem="{Binding Status, Mode=TwoWay}" Margin="2"></ComboBox>      
+      <TextBlock Grid.Row="3" Text="Details:" />
+      <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Details, Mode=TwoWay}" TextWrapping="Wrap" AcceptsReturn="True" Height="180" VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" Margin="2" />      
+    </Grid>
+
+    <Grid Grid.Row="1">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition />
+        <ColumnDefinition />
+      </Grid.ColumnDefinitions>
+      <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left">
+        <Button Content="Delete" Click="DeleteButton_Click" Width="75" Height="23" />
+      </StackPanel>
+      <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">              
+        <Button Content="Cancel" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" />
+        <Button Content="Save" Click="SaveButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="5,0,0,0" />
+      </StackPanel>
+    </Grid>
+  </Grid>
+</controls:ChildWindow>

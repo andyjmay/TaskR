@@ -26,6 +26,7 @@
     <UpgradeBackupLocation />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <SilverlightApplicationList>{AAD6A89B-316F-4A75-9954-DE6C35820B1F}|..\TaskR.Silverlight\TaskR.Silverlight.csproj|ClientBin|False</SilverlightApplicationList>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -159,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\TasksJsController.cs" />
+    <Compile Include="Controllers\TasksSLController.cs" />
     <Compile Include="Exceptions\NullIdentityException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -172,6 +174,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\placeholder.txt" />
+    <Content Include="ClientBin\TaskR.Silverlight.xap" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\tasks.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
@@ -197,6 +200,7 @@
     <Content Include="Scripts\native.history.js" />
     <Content Include="Scripts\nav.js" />
     <Content Include="Scripts\nav.min.js" />
+    <Content Include="Scripts\Silverlight.js" />
     <Content Include="Scripts\tasks.js" />
     <Content Include="Scripts\upshot.compat.knockout.js" />
     <Content Include="Scripts\upshot.js" />
@@ -223,6 +227,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\TasksJs\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\TasksSL\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

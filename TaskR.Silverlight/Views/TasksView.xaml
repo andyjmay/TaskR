@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="TaskR.Silverlight.Views.TasksView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:scm="clr-namespace:System.ComponentModel;assembly=System.Windows"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="400">
+  <UserControl.DataContext>
+    <Binding Mode="OneWay" Path="Tasks" Source="{StaticResource Locator}" />
+  </UserControl.DataContext>
+  <UserControl.Resources>
+    <CollectionViewSource x:Key="tasksCollection" Source="{Binding Tasks}">
+      <CollectionViewSource.SortDescriptions>
+        <scm:SortDescription Direction="Descending" PropertyName="DateCreated" />
+      </CollectionViewSource.SortDescriptions>
+    </CollectionViewSource>    
+  </UserControl.Resources>
+  <Grid x:Name="LayoutRoot">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="35" />
+      <RowDefinition />
+    </Grid.RowDefinitions>
+    <Grid Grid.Row="0" Margin="5">      
+      <!--<Button Width="50" Content="Refresh" Command="{Binding RefreshTasks}" Margin="5" />-->
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+        <CheckBox x:Name="showClosedCheckbox" IsChecked="{Binding ShowClosedTasks}" VerticalAlignment="Center" Margin="0,0,15,0">
+        	<TextBlock Text="Show Closed Tasks" FontSize="14" />
+        </CheckBox>
+        <Button Width="100" Content="Add a Task" Command="{Binding AddTask}" />
+      </StackPanel>
+    </Grid>     
+    <ListBox Grid.Row="1" 
+             ItemsSource="{Binding Tasks}" 
+             Background="Transparent"
+             SelectionMode="Single" 
+             ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+             ScrollViewer.VerticalScrollBarVisibility="Auto">
+      <!--<ListBox.ItemsPanel>
+        <ItemsPanelTemplate>
+          <StackPanel Orientation="Horizontal" />
+        </ItemsPanelTemplate>
+      </ListBox.ItemsPanel>-->
+      <ListBox.ItemContainerStyle>
+      	<Style TargetType="ListBoxItem">
+      		<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        </Style>
+      </ListBox.ItemContainerStyle>
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <Border Margin="3" BorderThickness="2" BorderBrush="Black" Background="White">
+            <Grid Margin="15" MouseLeftButtonDown="Tasks_MouseLeftButtonDown">
+              <StackPanel Grid.Row="0">
+                <TextBlock Text="{Binding Title}" FontSize="18" />
+                <TextBlock Text="{Binding DateCreated}" FontSize="10" />
+                <TextBlock Text="{Binding Status}" FontSize="10">
+                	<TextBlock.Foreground>
+                		<SolidColorBrush Color="{StaticResource AccentColor}"/>
+                	</TextBlock.Foreground>
+                </TextBlock>
+                <StackPanel Orientation="Horizontal">
+                  <TextBlock Text="Assigned To:" FontSize="10" Foreground="Black" />
+                  <TextBlock Text="{Binding AssignedTo}" FontSize="10">
+                  	<TextBlock.Foreground>
+                  		<SolidColorBrush Color="{StaticResource AccentColor}"/>
+                  	</TextBlock.Foreground>
+                  </TextBlock>
+                </StackPanel>
+                <TextBlock Text="{Binding Details}" FontSize="12" TextWrapping="Wrap" />                  
+              </StackPanel>     
+            </Grid>
+          </Border>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+
+  </Grid>
+</UserControl>
