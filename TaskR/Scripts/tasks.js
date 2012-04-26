@@ -7,6 +7,12 @@
     show: false
   });
 
+  $('#userLoginModal').modal({
+    backdrop: true,
+    keyboard: true,
+    show: false
+  });
+
   $('#addTaskButton').on('click', function () {
     $('#newTaskModal').modal('show');
   });
@@ -20,7 +26,7 @@
   $('.submit-button').on('click', function () {
     $('#newTaskModal').modal('hide');
     $('#editTaskModal').modal('hide');
-    //return false;
+    $('#userLoginModal').modal('hide');
   });
 
   $('.editButton').on('click', function () {
@@ -28,11 +34,23 @@
   });
 
   var taskHub = connection.taskHub;
-  var username = "andyjmay";
 
   var viewModel = {
     username: ko.observable(),
-    showClosed: ko.observable(false)
+    showClosed: ko.observable(false),
+    Login: function () {
+      taskHub.login(this.username())
+               .fail(function (e) {
+                 taskHub.HandleException(e);
+               })
+               .done(function (success) {
+                 if (success === false) {
+                   alert("failed");
+                 } else {
+
+                 }
+               });
+    }
   };
 
   var tasksViewModel = {
@@ -119,17 +137,18 @@
   // Connect to the hub
   $(function () {
     connection.hub.start(function () {
-      taskHub.login(username)
-               .fail(function (e) {
-                 taskHub.HandleException(e);
-               })
-               .done(function (success) {
-                 if (success === false) {
-                   alert("failed");
-                 } else {
+      $('#userLoginModal').modal('show');
+      //taskHub.login(username)
+      //         .fail(function (e) {
+      //           taskHub.HandleException(e);
+      //         })
+      //         .done(function (success) {
+      //           if (success === false) {
+      //             alert("failed");
+      //           } else {
                   
-                 }
-               });
+      //           }
+      //         });
     });
   });
 
@@ -179,6 +198,7 @@
 
   // Apply KO bindings
   ko.applyBindings(viewModel, document.getElementById('actions'));
+  ko.applyBindings(viewModel, document.getElementById('userLoginModal'));
   ko.applyBindings(tasksViewModel, document.getElementById('tasks'));
   ko.applyBindings(taskViewModel, document.getElementById('newTaskModal'));
   ko.applyBindings(taskViewModel, document.getElementById('editTaskModal'));

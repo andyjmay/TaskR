@@ -35,6 +35,19 @@
     </li>
   </ul>
 </div>
+<form class="modal fade" id="userLoginModal" data-bind="submit: Login">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">x</a>
+    <h3>Login</h3>      
+  </div>
+  <div class="modal-body">
+    <div for="Username">What is your username?</div>
+    <input type="text" data-bind="value: username" />
+  </div>
+  <div class="modal-footer">    
+    <input type="submit" class="btn btn-primary submit-button" value="Login" />
+  </div>
+</form>
 <form class="modal fade" id="newTaskModal" data-bind="submit: AddTask">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">x</a>
