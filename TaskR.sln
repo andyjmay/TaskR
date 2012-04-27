@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9FEFA7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskR.Silverlight", "TaskR.Silverlight\TaskR.Silverlight.csproj", "{AAD6A89B-316F-4A75-9954-DE6C35820B1F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskR.WindowsClient", "TaskR.WindowsClient\TaskR.WindowsClient.csproj", "{B1620B8A-77B4-459E-A310-82EE9686089E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{AAD6A89B-316F-4A75-9954-DE6C35820B1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAD6A89B-316F-4A75-9954-DE6C35820B1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAD6A89B-316F-4A75-9954-DE6C35820B1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1620B8A-77B4-459E-A310-82EE9686089E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1620B8A-77B4-459E-A310-82EE9686089E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1620B8A-77B4-459E-A310-82EE9686089E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1620B8A-77B4-459E-A310-82EE9686089E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C253771F-D8AB-40C0-A4B9-321341CF4891}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C253771F-D8AB-40C0-A4B9-321341CF4891}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C253771F-D8AB-40C0-A4B9-321341CF4891}.Release|Any CPU.ActiveCfg = Release|Any CPU
