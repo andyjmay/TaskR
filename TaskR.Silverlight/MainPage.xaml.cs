@@ -53,7 +53,7 @@ namespace TaskR.Silverlight {
       });
 
       Messenger.Default.Register<ExceptionEncounteredEvent>(this, (e) => {
-        MessageBox.Show(e.Exception.Message + " | " + e.Exception.StackTrace, "Unhandled Exception", MessageBoxButton.OK);
+        MessageBox.Show(e.Exception.Message + " | " + e.Exception.StackTrace + " | " + e.Exception.InnerException, "Unhandled Exception", MessageBoxButton.OK);
       });
     }
 
