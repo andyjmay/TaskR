@@ -12,7 +12,7 @@ namespace TaskR.Silverlight.ViewModels {
     public ObservableCollection<Task> Tasks { get; private set; }
     public ObservableCollection<string> TaskStatuses { get; private set; } 
     public RelayCommand AddTask { get; private set; }
-
+    
     private bool showClosedTasks;
     public bool ShowClosedTasks {
       get { return showClosedTasks; }
@@ -20,6 +20,15 @@ namespace TaskR.Silverlight.ViewModels {
         showClosedTasks = value;
         //TODO: Filter out closed tasks
         RaisePropertyChanged("ShowClosedTasks");
+      }
+    }
+
+    private string username;
+    public string Username {
+      get { return username; }
+      set { 
+        username = value;
+        RaisePropertyChanged(() => Username);
       }
     }
 
@@ -44,7 +53,7 @@ namespace TaskR.Silverlight.ViewModels {
         }
         Task taskToUpdate = Tasks.FirstOrDefault(t => t.TaskID == e.UpdatedTask.TaskID);
         if (taskToUpdate != null) {
-          if (taskToUpdate.IsDeleted) {
+          if (taskToUpdate.IsDeleted || taskToUpdate.AssignedTo != Username) {
             Tasks.Remove(taskToUpdate);
           } else {
             taskToUpdate.AssignedTo = e.UpdatedTask.AssignedTo;
@@ -53,6 +62,9 @@ namespace TaskR.Silverlight.ViewModels {
             taskToUpdate.Title = e.UpdatedTask.Title;
             taskToUpdate.IsDeleted = e.UpdatedTask.IsDeleted;
           }
+        } else {
+          // This is a new assigned task
+          Tasks.Add(e.UpdatedTask);
         }
       });
 
@@ -64,6 +76,10 @@ namespace TaskR.Silverlight.ViewModels {
         if (deletedTask != null) {
           Tasks.Remove(deletedTask);
         }
+      });
+
+      Messenger.Default.Register<LoginEvent>(this, (e) => {
+        Username = e.Username;
       });
 
       AddTask = new RelayCommand(() => {
