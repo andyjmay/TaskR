@@ -80,11 +80,17 @@ namespace TaskR.Hubs {
         if (existingTask == null) {
           throw new Exception("Unable to find an existing task in the database");
         }
-        existingTask.AssignedTo = task.AssignedTo;
         existingTask.Details = task.Details;
         existingTask.Status = task.Status;
         existingTask.Title = task.Title;
+        bool assignmentChanged = task.AssignedTo != existingTask.AssignedTo;
+        string originallyAssignedTo = existingTask.AssignedTo;
+        existingTask.AssignedTo = task.AssignedTo;
         taskEntities.SaveChanges();
+
+        if (assignmentChanged) {
+          Clients[originallyAssignedTo].UpdatedTask(existingTask);
+        }
         Clients[task.AssignedTo].UpdatedTask(existingTask);
         sendLogMessage(string.Format("{0} has updated task '{1}'.", getCurrentUser().Username, task.Title));
       } catch (Exception ex) {
