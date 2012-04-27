@@ -1,0 +1,42 @@
+﻿@{
+  ViewBag.Title = "TaskR";
+  ViewBag.Description = "Simple task management demo application powered by SignalR";
+}
+
+@section Styles {
+  <style type="text/css">
+    body {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+  </style>
+}
+<a href="https://github.com/andyjmay/TaskR"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/camo.github.com/7afbc8b248c68eb468279e8c17986ad46549fb71/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub"></a>
+
+<div class="container">
+  <div class="hero-unit">
+    <h1>@ViewBag.Title</h1>
+    <p>@ViewBag.Description</p>
+  </div>
+  <div class="row">
+    <div class="span4">
+      <h2>Silverlight Client</h2>
+      <p>TaskR implemented in Silverlight</p>
+      <p><a class="btn btn-inverse" href="/TasksSL">Run</a></p>
+    </div>
+    <div class="span4">
+      <h2>JavaScript Client</h2>
+      <p>TaskR implemented in HTML, JavaScript, and CSS</p>
+      <p><a class="btn btn-inverse" href="/TasksJS">Run</a></p>
+    </div>
+    <div class="span4">
+      <h2>WPF Client</h2>
+      <p>TaskR implemented in WPF</p>
+      <p>Coming soon...</p>
+    </div>
+
+    <hr />
+
+    <footer></footer>
+  </div>
+</div>
