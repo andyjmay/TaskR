@@ -118,6 +118,9 @@
     var taskDateCreated = task.DateCreated.fromJsonDate();
     task.DateCreated = taskDateCreated.formatDate() + " " + taskDateCreated.formatTime(true);
     taskHub.DeletedTask(task);
+    if (task.AssignedTo !== viewModel.username()) {
+      return;
+    }  
     tasksViewModel.tasks.push(task);
     tasksViewModel.tasks.sort(function (left, right) {
       return left === right ? 0 : (left.TaskID < right.TaskID ? -1 : 1)
