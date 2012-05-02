@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2010 Express for Windows Phone
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskR", "TaskR\TaskR.csproj", "{C253771F-D8AB-40C0-A4B9-321341CF4891}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9FEFA7AC-DF30-46D2-9081-82BB1FB100FC}"
@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskR.Silverlight", "TaskR.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskR.WindowsClient", "TaskR.WindowsClient\TaskR.WindowsClient.csproj", "{B1620B8A-77B4-459E-A310-82EE9686089E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskR.WP7Client", "TaskR.WP7Client\TaskR.WP7Client.csproj", "{8AC6199B-0844-4140-8766-57B2764A8F6E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskR.WP7Client", "TaskR.WP7Client\TaskR.WP7Client.csproj", "{612DED03-3BC2-4566-9823-A446657FE8F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,12 +33,12 @@ Global
 		{B1620B8A-77B4-459E-A310-82EE9686089E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1620B8A-77B4-459E-A310-82EE9686089E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1620B8A-77B4-459E-A310-82EE9686089E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8AC6199B-0844-4140-8766-57B2764A8F6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8AC6199B-0844-4140-8766-57B2764A8F6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8AC6199B-0844-4140-8766-57B2764A8F6E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{8AC6199B-0844-4140-8766-57B2764A8F6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8AC6199B-0844-4140-8766-57B2764A8F6E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8AC6199B-0844-4140-8766-57B2764A8F6E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{612DED03-3BC2-4566-9823-A446657FE8F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{612DED03-3BC2-4566-9823-A446657FE8F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{612DED03-3BC2-4566-9823-A446657FE8F2}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{612DED03-3BC2-4566-9823-A446657FE8F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{612DED03-3BC2-4566-9823-A446657FE8F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{612DED03-3BC2-4566-9823-A446657FE8F2}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

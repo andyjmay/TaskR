@@ -1,0 +1,39 @@
+﻿<vm:TasksViewModel 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"       
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="clr-namespace:TaskR.WP7Client.ViewModels"
+    xmlns:models="clr-namespace:TaskR.Models">
+    <vm:TasksViewModel.Tasks>
+        <models:Task Title="task one" 
+            Details="Maecenas praesent accumsan bibendum"
+            AssignedTo="andyjmay"
+            Status="Open"
+            DateCreated="4/19/2012" />
+        <models:Task Title="task two" 
+            Details="Dictumst eleifend facilisi faucibus"
+            AssignedTo="andyjmay" 
+            Status="On Hold"
+            DateCreated="4/16/2012" />
+        <models:Task Title="task three" 
+            Details="Habitant inceptos interdum lobortis"
+            AssignedTo="andyjmay" 
+            Status="Open"
+            DateCreated="4/14/2012" />
+        <models:Task Title="task four" 
+            Details="Nascetur pharetra placerat pulvinar"
+            AssignedTo="andyjmay" 
+            Status="Open"
+            DateCreated="4/13/2012" />
+        <models:Task Title="task five" 
+            Details="Sagittis senectus sociosqu suscipit"
+            AssignedTo="andyjmay" 
+            Status="On Hold"
+            DateCreated="4/12/2012" />
+        <models:Task Title="task six" 
+            Details="Torquent ultrices vehicula volutpat"
+            AssignedTo="andyjmay" 
+            Status="Closed"
+            DateCreated="4/1/2012" />
+    </vm:TasksViewModel.Tasks>
+    
+</vm:TasksViewModel>

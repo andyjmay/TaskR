@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
+﻿using System.Windows;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using GalaSoft.MvvmLight.Threading;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
@@ -37,6 +28,9 @@ namespace TaskR.WP7Client
             // Phone-specific initialization
             InitializePhoneApplication();
 
+            // MVVM Light Dispatcher Helper initialization
+            DispatcherHelper.Initialize();
+
             // Show graphics profiling information while debugging.
             if (System.Diagnostics.Debugger.IsAttached)
             {
@@ -47,7 +41,7 @@ namespace TaskR.WP7Client
                 //Application.Current.Host.Settings.EnableRedrawRegions = true;
 
                 // Enable non-production analysis visualization mode, 
-                // which shows areas of a page that are handed off to GPU with a colored overlay.
+                // which shows areas of a page that are handed off GPU with a colored overlay.
                 //Application.Current.Host.Settings.EnableCacheVisualization = true;
 
                 // Disable the application idle detection by setting the UserIdleDetectionMode property of the
@@ -69,12 +63,14 @@ namespace TaskR.WP7Client
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+
         }
 
         // Code to execute when the application is deactivated (sent to background)
         // This code will not execute when the application is closing
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
+            // Ensure that required application state is persisted here.
         }
 
         // Code to execute when the application is closing (eg, user hit Back)

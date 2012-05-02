@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
-  <App xmlns="" ProductID="{6f0ce8fe-d2e7-4d2b-ad32-084581537b2e}" Title="TaskR.WP7Client" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="TaskR.WP7Client author" Description="Sample description" Publisher="TaskR.WP7Client">
+  <App xmlns="" ProductID="{21be6527-e65f-4602-a6b7-7a3fb8d5af0e}" Title="TaskR.WP7Client" RuntimeType="Silverlight" Version="0.4.0.0" Genre="apps.normal"  Author="andyjmay" Description="Simple task management demo application powered by SignalR" Publisher="andyjmay">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_GAMERSERVICES"/>
@@ -20,14 +20,14 @@
       <Capability Name="ID_CAP_APPOINTMENTS"/>
     </Capabilities>
     <Tasks>
-      <DefaultTask  Name ="_default" NavigationPage="MainPage.xaml"/>
+      <DefaultTask  Name ="_default" NavigationPage="/Views/MainPage.xaml"/>
     </Tasks>
     <Tokens>
       <PrimaryToken TokenID="TaskR.WP7ClientToken" TaskName="_default">
         <TemplateType5>
           <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
           <Count>0</Count>
-          <Title>TaskR.WP7Client</Title>
+          <Title>TaskR</Title>
         </TemplateType5>
       </PrimaryToken>
     </Tokens>
