@@ -176,6 +176,7 @@
   <ItemGroup>
     <Content Include="App_Data\placeholder.txt" />
     <Content Include="ClientBin\TaskR.Silverlight.xap" />
+    <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\tasks.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
