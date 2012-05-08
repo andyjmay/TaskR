@@ -22,23 +22,29 @@
     <div class="span4">
       <h2>Silverlight Client</h2>
       <p>TaskR implemented in Silverlight</p>
-      <p><a class="btn btn-inverse" href="~/TasksSL">Run</a></p>
+      <p>@Html.ActionLink("Run", "Index", "TasksSL", null, new { @class="btn btn-inverse" })</p>
     </div>
     <div class="span4">
       <h2>JavaScript Client</h2>
       <p>TaskR implemented in HTML, JavaScript, and CSS</p>
-      <p><a class="btn btn-inverse" href="~/TasksJS">Run</a></p>
+      <p>@Html.ActionLink("Run", "Index", "TasksJs", null, new { @class="btn btn-inverse" })</p>
     </div>
     <div class="span4">
       <h2>WPF Client</h2>
       <p>TaskR implemented in WPF</p>
       <p><a class="btn btn-inverse" href="http://andyjmay.com/Apps/TaskRClient/TaskR.WindowsClient.application">Run</a></p>
     </div>
-
-    <hr class="soften">
-
-    <footer class="footer">
-      Follow me on <a href="http://twitter.com/andrewjmay" target="_blank">twitter</a>
-    </footer>
   </div>
+  <div class="row">
+    <div class="span4">
+      <h2>WebAPI Client</h2>
+      <p>WebAPI version - Without SignalR</p>
+      <p>@Html.ActionLink("Run", "Index", "TasksWebApi", null, new { @class="btn btn-inverse" })</p>
+    </div>
+  </div>
+  <hr class="soften">
+
+  <footer class="footer">
+    Follow me on <a href="http://twitter.com/andrewjmay" target="_blank">twitter</a>
+  </footer>
 </div>
