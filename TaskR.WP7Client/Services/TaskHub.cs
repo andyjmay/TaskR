@@ -14,7 +14,7 @@ namespace TaskR.WP7Client.Services {
     public TaskHub() {
       string signalrService = "http://andyjmay.com/Apps/TaskR";
       hubConnection = new HubConnection(signalrService);
-      hubProxy = hubConnection.CreateProxy("TaskR.Hubs.TaskHub");
+      hubProxy = hubConnection.CreateProxy("TaskHub");
 
       hubProxy.On<IEnumerable<Task>>("GotTasksForUser", tasks => DispatcherHelper.UIDispatcher.BeginInvoke(() => Messenger.Default.Send(new GotTasksForUserEvent(tasks))));
       hubProxy.On<string>("GotLogMessage", message => DispatcherHelper.UIDispatcher.BeginInvoke(() => Messenger.Default.Send(new GotLogMessageEvent(message))));

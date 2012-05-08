@@ -68,13 +68,13 @@
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibsPreview.4.1.21\lib\sl4-windowsphone71\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.0.7.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.4.0.7\lib\sl4-windowsphone71\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.4\lib\sl4-windowsphone71\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="SignalR.Client.WP7, Version=0.4.0.2, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="SignalR.Client.WP7, Version=0.5.84.10501, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\SignalR.Client.WP7.0.4.0.2\lib\sl4-wp71\SignalR.Client.WP7.dll</HintPath>
+      <HintPath>..\packages\SignalR.Client.WP7.0.5.84-rc\lib\sl4-wp71\SignalR.Client.WP7.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Tasks.WP71, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.2.1.2\lib\sl4-wp71\System.Threading.Tasks.WP71.dll</HintPath>
