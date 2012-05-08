@@ -6,6 +6,7 @@ using TaskR.Exceptions;
 using TaskR.Models;
 
 namespace TaskR.Hubs {
+  [HubName("TaskHub")]
   public class TaskHub : Hub, IDisconnect {
     private readonly TaskEntities taskEntities;
 
@@ -39,7 +40,7 @@ namespace TaskR.Hubs {
           taskEntities.Tasks.Add(newTask);
           taskEntities.SaveChanges();
         }
-        AddToGroup(username);
+        Groups.Add(Context.ConnectionId, username);        
         GetTasksForUser(username);
         sendLogMessage(username + " has logged in");
       } catch (Exception ex) {
@@ -73,9 +74,6 @@ namespace TaskR.Hubs {
 
     public void UpdateTask(Task task) {
       try {
-        //taskEntities.Tasks.Attach(task);
-        //taskEntities.Entry<Task>(task).State = System.Data.EntityState.Modified;
-        
         Task existingTask = taskEntities.Tasks.Find(task.TaskID);
         if (existingTask == null) {
           throw new Exception("Unable to find an existing task in the database");

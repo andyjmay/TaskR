@@ -16,7 +16,7 @@ namespace TaskR.WindowsClient.Services {
     public TaskHub() {
       string signalrService = Settings.Default.TaskRUrl;
       hubConnection = new HubConnection(signalrService);
-      hubProxy = hubConnection.CreateProxy("TaskR.Hubs.TaskHub");
+      hubProxy = hubConnection.CreateProxy("TaskHub");
 
       hubProxy.On<IEnumerable<Task>>("GotTasksForUser", tasks => DispatcherHelper.UIDispatcher.BeginInvoke(new Action(() => Messenger.Default.Send(new GotTasksForUserEvent(tasks)))));
       hubProxy.On<string>("GotLogMessage", message => DispatcherHelper.UIDispatcher.BeginInvoke(new Action(() => Messenger.Default.Send(new GotLogMessageEvent(message)))));

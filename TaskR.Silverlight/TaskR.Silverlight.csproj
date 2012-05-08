@@ -76,13 +76,13 @@
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\lib\signalr\sl\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.4\lib\sl4\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="SignalR.Client.Silverlight5">
-      <HintPath>..\lib\signalr\sl\SignalR.Client.Silverlight5.dll</HintPath>
+      <HintPath>..\packages\SignalR.Client.Silverlight5.0.5.84-rc\lib\sl50\SignalR.Client.Silverlight5.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Tasks.SL5">
-      <HintPath>..\lib\signalr\sl\System.Threading.Tasks.SL5.dll</HintPath>
+      <HintPath>..\packages\System.Threading.Tasks.3.0.1\lib\sl50\System.Threading.Tasks.SL5.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="system" />

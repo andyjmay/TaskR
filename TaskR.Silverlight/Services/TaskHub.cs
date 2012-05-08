@@ -16,7 +16,7 @@ namespace TaskR.Silverlight.Services {
     public TaskHub() {
       string signalrService = Application.Current.Host.Source.GetComponents(UriComponents.SchemeAndServer | UriComponents.Path, UriFormat.Unescaped).Replace("ClientBin/TaskR.Silverlight.xap", "");
       hubConnection = new HubConnection(signalrService);
-      hubProxy = hubConnection.CreateProxy("TaskR.Hubs.TaskHub");
+      hubProxy = hubConnection.CreateProxy("TaskHub");
 
       hubProxy.On<IEnumerable<Task>>("GotTasksForUser", tasks => DispatcherHelper.UIDispatcher.BeginInvoke(() => Messenger.Default.Send(new GotTasksForUserEvent(tasks))));
       hubProxy.On<string>("GotLogMessage", message => DispatcherHelper.UIDispatcher.BeginInvoke(() => Messenger.Default.Send(new GotLogMessageEvent(message))));
