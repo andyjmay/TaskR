@@ -1,4 +1,6 @@
-﻿(function ($, connection, window) {
+﻿/// <reference path="../_references.js" />
+
+(function ($, window) {
   "use strict";
 
   $('#newTaskModal').modal({
@@ -40,8 +42,7 @@
       $.getJSON("api/tasks?$filter=AssignedTo eq '" + this.username() + "'", function (results) {
         $.each(results, function () {
           var task = this;
-          task.DateCreated = task.DateCreated.fromJsonDate();
-          tasksViewModel.tasks.push(task);
+          tasks.addedTask(task);
         });
       });
     }
@@ -57,7 +58,6 @@
       taskViewModel.Details(this.Details);
       taskViewModel.DateCreated(this.DateCreated);
 
-      //TODO: Fix this UI call
       $('#editTaskModal').modal('show');
     }
   };
@@ -74,8 +74,7 @@
         Title: this.Title(),
         AssignedTo: this.AssignedTo(),
         Status: this.Status(),
-        Details: this.Details(),
-        DateCreated: this.DateCreated()
+        Details: this.Details()
       });
     },
     UpdateTask: function () {
@@ -84,8 +83,7 @@
         Title: this.Title(),
         AssignedTo: this.AssignedTo(),
         Status: this.Status(),
-        Details: this.Details(),
-        DateCreated: this.DateCreated()
+        Details: this.Details()
       });
     },
     DeleteTask: function () {
@@ -118,35 +116,47 @@
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(newTask),
         success: function (data, textStatus, jqXHR) {
-          var createdTask = data;
-          createdTask.DateCreated = createdTask.DateCreated.fromJsonDate();
-          tasksViewModel.tasks.push(createdTask);
-          tasks.sortTasks();
+          tasks.addedTask(data);
         }
       });
     },
-    updateTask: function (updatedTask) {
+    addedTask: function (addedTask) {
+      var dateCreated = addedTask.DateCreated.fromJsonDate();
+      addedTask.DateCreated = dateCreated.formatDate() + " " + dateCreated.formatTime(true);
+      if (addedTask.AssignedTo.toLowerCase() === viewModel.username().toLowerCase()) {
+        tasksViewModel.tasks.push(addedTask);
+        tasks.sortTasks();
+      }
+    },
+    updateTask: function (taskToUpdate) {
       $.ajax({
-        url: '/api/tasks/' + updatedTask.TaskID,
+        url: '/api/tasks/' + taskToUpdate.TaskID,
         cache: false,
         type: 'PUT',
         contentType: 'application/json; charset=utf-8',
-        data: JSON.stringify(updatedTask),
+        data: JSON.stringify(taskToUpdate),
         success: function (data, textStatus, jqXHR) {
-          tasksViewModel.tasks.remove(function (taskToRemove) {
-            return taskToRemove.TaskID === updatedTask.TaskID;
-          });
-          if (updatedTask.AssignedTo !== viewModel.username()) {
-            return;
-          }
-          tasksViewModel.tasks.push(updatedTask);
-          tasks.sortTasks();
-          taskViewModel.ClearTask();
+          tasks.updatedTask(taskToUpdate);
         },
         error: function (jqXHR, textStatus, errorThrown) {
           alert(textStatus + " :: " + errorThrown);
         }
       });
+    },
+    updatedTask: function (updatedTask) {
+      if (updatedTask.AssignedTo.toLowerCase() !== viewModel.username().toLowerCase()) {
+        tasks.deletedTask(updatedTask);
+        return;
+      }
+
+      var existingTask = ko.utils.arrayFirst(tasksViewModel.tasks(), function (task) {
+        return task.TaskID === updatedTask.TaskID;
+      });
+      updatedTask.DateCreated = existingTask.DateCreated;
+      tasks.deletedTask(updatedTask);
+      tasksViewModel.tasks.push(updatedTask);
+      tasks.sortTasks();
+      taskViewModel.ClearTask();
     },
     deleteTask: function (taskToDelete) {
       $.ajax({
@@ -155,17 +165,20 @@
         type: 'DELETE',
         contentType: 'application/json; charset=utf-8',
         success: function (data, textStatus, jqXHR) {
-          tasksViewModel.tasks.remove(function (taskToRemove) {
-            return taskToRemove.TaskID === taskToDelete.TaskID;
-          });
-          taskViewModel.ClearTask();
+          tasks.deletedTask(taskToDelete);
         },
         error: function (jqXHR, textStatus, errorThrown) {
           alert(textStatus + " :: " + errorThrown);
         }
       });
     },
-    sortTasks: function() {
+    deletedTask: function (deletedTask) {
+      tasksViewModel.tasks.remove(function (taskToRemove) {
+        return taskToRemove.TaskID === deletedTask.TaskID;
+      });
+      taskViewModel.ClearTask();
+    },
+    sortTasks: function () {
       tasksViewModel.tasks.sort(function (left, right) {
         return left === right ? 0 : (left.TaskID > right.TaskID ? -1 : 1);
       });
@@ -191,7 +204,7 @@
   }
 
   String.prototype.fromJsonDate = function () {
-    return eval(this.replace( /\/Date\((\d+)(\+|\-)?.*\)\//gi , "new Date($1)"));
+    return eval(this.replace(/\/Date\((\d+)(\+|\-)?.*\)\//gi, "new Date($1)"));
   };
 
   Date.prototype.formatDate = function () {
@@ -220,4 +233,4 @@
     var seconds = padZero(this.getSeconds());
     return hr + ":" + mins + ":" + seconds + (showAp ? " " + ap : "");
   };
-})(jQuery, $.connection, window);
+})(jQuery, window);
