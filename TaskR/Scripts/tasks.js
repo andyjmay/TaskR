@@ -126,6 +126,7 @@
   };
 
   taskHub.GotLogMessage = function (logMessage) {
+    toastr.info(logMessage);
   };
 
   taskHub.AddedTask = function (task) {

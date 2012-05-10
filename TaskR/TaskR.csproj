@@ -190,6 +190,8 @@
     <Content Include="Content\tasks.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\toastr-responsive.css" />
+    <Content Include="Content\toastr.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -214,6 +216,7 @@
     <Content Include="Scripts\nav.min.js" />
     <Content Include="Scripts\Silverlight.js" />
     <Content Include="Scripts\tasks.js" />
+    <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\upshot.compat.knockout.js" />
     <Content Include="Scripts\upshot.js" />
     <Content Include="Scripts\upshot.knockout.extensions.js" />
